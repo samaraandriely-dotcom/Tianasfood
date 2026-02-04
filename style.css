@@ -182,7 +182,7 @@ body {
     background:
         radial-gradient(circle at top, rgba(255, 255, 255, .15), transparent 60%),
         linear-gradient(180deg, #0f3d35, #1f6f5b);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('pink\ and\ Maroon\ Playful\ Sweet\ Food\ Pitch\ Deck\ Presentation.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('pink and Maroon Playful Sweet Food Pitch Deck Presentation.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1604,3 +1604,4 @@ body.magic-mode .container-rodape {
     margin-top: 5px;
 
 }
+
