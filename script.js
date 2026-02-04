@@ -27,7 +27,13 @@ function navegarPara(destinoId) {
         void destino.offsetWidth;
         destino.classList.add('ativa');
     }
-
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader-overlay');
+    if (loader) {
+        loader.style.display = 'none'; // Esconde o loader
+    }
+    navegarPara('home'); // Garante que a home seja a primeira página visível
+});
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (destinoId === 'checkout-page') {
@@ -380,3 +386,4 @@ gramofone.addEventListener('click', () => {
 
 // Opcional: Volume mais baixo para não assustar
 audio.volume = 0.4;
+
