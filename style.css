@@ -1,0 +1,1605 @@
+:root {
+    --verde-escuro: #1f4f46;
+    --verde-medio: #3c8d7c;
+    --verde-claro: #cfe9e3;
+    --dourado: #d4af37;
+    --creme: #f7f4ee;
+    --marrom: #3b2f2f;
+    --sombra: rgba(0, 0, 0, .15);
+    --fonte-principal: 'Poppins', sans-serif;
+    --fonte-titulo: 'Playfair Display', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background: linear-gradient(180deg, #0f3d35, #1f6f5b);
+    min-height: 100vh;
+    color: #333;
+}
+
+.pagina {
+    display: none;
+    min-height: 100vh;
+}
+
+.pagina.ativa {
+    display: flex;
+}
+
+/* ==================== TELA DE CARREGAMENTO ==================== */
+#loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #1a433a, #0a1f1b);
+    /* Verde profundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Fica acima de tudo */
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.loader-conteudo {
+    text-align: center;
+    color: var(--dourado);
+}
+
+.logo-loader {
+    font-family: var(--fonte-titulo);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+    animation: brilhoSuave 2s infinite ease-in-out;
+}
+
+.barra-carregamento {
+    width: 200px;
+    height: 3px;
+    background: rgba(212, 175, 55, 0.2);
+    margin: 0 auto 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progresso {
+    width: 0%;
+    height: 100%;
+    background: var(--dourado);
+    box-shadow: 0 0 10px var(--dourado);
+    animation: carregar 2.5s forwards cubic-bezier(0, 0.43, 1, 0.36);
+}
+
+.loader-conteudo p {
+    font-family: var(--fonte-principal);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* Animações */
+@keyframes carregar {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes brilhoSuave {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        text-shadow: 0 0 5px transparent;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 15px var(--dourado);
+    }
+}
+
+/* Classe para esconder o loader via JS */
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ==================== ANIMAÇÕES DE TRANSIÇÃO ==================== */
+
+/* Classe que será aplicada à página que está a entrar */
+.pagina.ativa {
+    display: flex;
+    animation: entrarSuave 0.6s ease forwards;
+}
+
+/* Efeito de deslizar para cima e aparecer (Fade In Up) */
+@keyframes entrarSuave {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Opcional: Efeito extra nos itens do cardápio para aparecerem um por um */
+.cartao-cardapio {
+    opacity: 0;
+    animation: surgirItem 0.5s ease forwards;
+}
+
+/* Cria um pequeno atraso para cada item (ajuste conforme necessário) */
+.cartao-cardapio:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.cartao-cardapio:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.cartao-cardapio:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.cartao-cardapio:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes surgirItem {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ==================== HOME ==================== */
+#home {
+    align-items: center;
+    padding: 40px 20px;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, .15), transparent 60%),
+        linear-gradient(180deg, #0f3d35, #1f6f5b);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('Pink\ and\ Maroon\ Playful\ Sweet\ Food\ Pitch\ Deck\ Presentation.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Efeito Parallax elegante */
+    display: flex;
+    justify-content: center;
+
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.area-conteudo {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container Principal: A Vitrine da Tiana */
+.celular {
+    position: relative;
+    width: 340px;
+    height: 600px;
+    background: radial-gradient(circle at center, #1f4f46 0%, #0a1f1b 100%);
+
+    /* Borda Tripla: Ouro Polido */
+    border: 4px solid #b8860b;
+    outline: 2px solid #d4af37;
+    outline-offset: -10px;
+
+    border-radius: 170px 170px 50px 50px;
+    padding: 35px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    /* Sombra de objeto físico na mesa */
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.8),
+        inset 0 0 50px rgba(0, 0, 0, 0.6);
+
+    overflow: hidden;
+}
+
+/* Brasão Ornamental no Topo (A antiga entranha-tela) */
+.entranha-tela {
+    position: absolute;
+    top: 25px;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    z-index: 10;
+}
+
+/* Medalhão para as Imagens */
+.caixa-imagem {
+    width: 100%;
+    height: 200px;
+    position: relative;
+
+    /* Moldura estilo camafeu */
+    border: 2px solid #d4af37;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px #d4af37;
+    transition: all 0.5s ease;
+}
+
+/* Brilho de Vidro por cima da imagem */
+.caixa-imagem::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 45%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 55%);
+    animation: reflexo 4s infinite;
+}
+
+.caixa-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    filter: sepia(20%) contrast(110%);
+    /* Tom levemente vintage */
+    transition: 0.5s;
+}
+
+.caixa-imagem:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: sepia(0%) contrast(100%);
+}
+
+/* Animação do reflexo no vidro */
+@keyframes reflexo {
+    0% {
+        transform: translateX(-100%) translateY(-100%);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%);
+    }
+}
+
+/* Detalhe de canto Art Déco */
+.celular::before {
+    content: '✧';
+    position: absolute;
+    bottom: 20px;
+    color: #d4af37;
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+.bloco-texto {
+    text-align: center;
+    color: var(--creme);
+}
+
+.area-logo {
+    letter-spacing: 4px;
+    color: var(--dourado);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 4.8rem;
+    line-height: 1.05;
+    color: #f4f1ec;
+    text-shadow: 0 6px 15px rgba(0, 0, 0, .35);
+}
+
+.subtitulo {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #d8efe9;
+}
+
+.botao-cardapio {
+    display: inline-block;
+    margin-top: 32px;
+    background: linear-gradient(135deg, #d4af37, #b8922d);
+    color: #3b2f2f;
+    padding: 12px 36px;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
+    transition: .3s;
+}
+
+.botao-cardapio:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .4);
+}
+
+/* ==================== CARDÁPIO ART DÉCO ==================== */
+
+/* Ajuste do Fundo */
+#cardapio.pagina.ativa {
+    display: block;
+    /* Gradiente mais rico com verde profundo e dourado */
+    background: linear-gradient(to bottom, rgba(15, 61, 53, 0.96), rgba(10, 41, 36, 0.92)),
+        url('https://i.pinimg.com/1200x/7d/65/f9/7d65f9fe48cdb1b12fbfe6628afdd8a7.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    padding-bottom: 80px;
+}
+
+.wrapper-cardapio {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+/* Título com Letreiro Vintage */
+.titulo-cardapio.art-deco-title {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(38px, 6vw, 60px);
+    color: #d4af37;
+    /* Ouro Nobre */
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 0px #000, 4px 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Estilização das Abas (Tabs) */
+.menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 30px auto 40px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 10px 22px;
+    border-radius: 4px;
+    /* Mais reto para estilo Deco */
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    background: #d4af37;
+    color: #0f3d35;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Grade de Itens */
+.grade-cardapio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Cartão com Cantoneiras Geométricas */
+.cartao-cardapio {
+    background: #fdfaf1;
+    /* Cor creme de papel antigo */
+    border: 1px solid #d4af37;
+    border-radius: 0px;
+    /* Cantos retos são mais Art Déco */
+    padding: 18px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.cartao-cardapio:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    background: #fff;
+}
+
+/* Cantoneira Decorativa */
+.deco-corner {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid #b8922d;
+    border-left: 2px solid #b8922d;
+    pointer-events: none;
+}
+
+.cartao-cardapio img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #d4af37;
+    object-fit: cover;
+    filter: saturate(1.1);
+}
+
+.info-cardapio h3 {
+    font-family: var(--fonte-titulo);
+    color: #1a3317;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.info-cardapio p {
+    font-size: 0.8rem;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.preco {
+    color: #1f6f5b;
+    font-weight: 800;
+    font-size: 1rem;
+    display: block;
+}
+
+/* Botões Modernizados */
+.botao-adicionar {
+    background: #1a3317;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    padding: 6px 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.65rem;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-adicionar:hover {
+    background: #d4af37;
+    color: #1a3317;
+}
+
+.botao-finalizar {
+    display: block;
+    margin: 50px auto;
+    background: #d4af37;
+    color: #000;
+    padding: 16px 45px;
+    border: 2px solid #000;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 5px 5px 0px #1a3317;
+    /* Sombra sólida estilo anos 20 */
+}
+
+.botao-finalizar:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #1a3317;
+}
+
+/* Esconder pseudo-elementos antigos se necessário */
+.cartao-cardapio::after {
+    display: none;
+}
+
+.busca-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.busca-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+#input-busca {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #d4af37;
+    padding: 12px 40px;
+    color: #d4af37;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+#input-busca::placeholder {
+    color: rgba(212, 175, 55, 0.6);
+    font-style: italic;
+}
+
+.busca-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+/* Efeito de brilho quando o prato é filtrado */
+.cartao-cardapio.highlight {
+    box-shadow: 0 0 20px #d4af37;
+    border: 2px solid #d4af37;
+    transform: scale(1.05);
+}
+
+/* ==================== CARRINHO FLUTUANTE ==================== */
+
+
+
+.indicador-carrinho {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #1f4f46;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.painel-carrinho {
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    width: 320px;
+    max-height: 60vh;
+    background: linear-gradient(180deg, #f7f4ee, #ede8df);
+    border-radius: 20px;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, .3);
+    padding: 18px;
+    display: none;
+    flex-direction: column;
+    z-index: 998;
+}
+
+.painel-carrinho.ativo {
+    display: flex;
+}
+
+.cabecalho-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.cabecalho-carrinho h4 {
+    font-family: var(--fonte-titulo);
+    color: var(--verde-escuro);
+    font-size: 1.3rem;
+}
+
+.botao-fechar-carrinho {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.itens-carrinho {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.item-carrinho {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 0;
+}
+
+.item-carrinho img {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.info-item-carrinho {
+    flex: 1;
+}
+
+.info-item-carrinho p {
+    font-size: .8rem;
+    margin-bottom: 2px;
+    color: #333;
+}
+
+.info-item-carrinho span {
+    font-size: .75rem;
+    color: var(--verde-medio);
+    font-weight: 600;
+}
+
+.rodape-carrinho {
+    margin-top: 12px;
+}
+
+.total-carrinho {
+    font-weight: 700;
+    color: var(--verde-escuro);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.botao-ir-checkout {
+    width: 100%;
+    background: linear-gradient(135deg, #3c8d7c, #1f6f5b);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Container que agrupa os botões e o número */
+.controle-quantidade {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    /* Um fundo sutil */
+    padding: 4px 8px;
+    border-radius: 25px;
+    width: fit-content;
+    margin-top: 5px;
+}
+
+/* Estilo comum para os botões + e - */
+.botao-qtd {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #1f4f46;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.botao-qtd:hover {
+    background: #1f4f46;
+    color: #fff;
+    border-color: #1f4f46;
+    transform: scale(1.1);
+}
+
+.botao-qtd:active {
+    transform: scale(0.95);
+}
+
+.valor-quantidade {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* ==================== CHECKOUT ==================== */
+
+#checkout-page.pagina.ativa {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, .15), transparent 60%),
+        linear-gradient(180deg, #0f3d35, #1f6f5b);
+    padding: 50px 20px;
+}
+
+.wrapper-checkout {
+    display: flex;
+    gap: 40px;
+    max-width: 960px;
+    width: 100%;
+}
+
+.resumo-pedido,
+.cartao-pagamento {
+    background: linear-gradient(180deg, #f7f4ee, #ede8df);
+    padding: 24px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .2);
+}
+
+.resumo-pedido {
+    flex: 1.4;
+}
+
+.cartao-pagamento {
+    flex: 1;
+}
+
+.titulo-resumo {
+    font-family: var(--fonte-titulo);
+    font-size: 2.4rem;
+    color: var(--verde-escuro);
+    margin-bottom: 26px;
+}
+
+.titulo-pagamento {
+    background: linear-gradient(135deg, #3c8d7c, #1f6f5b);
+    color: #fff;
+    text-align: center;
+    padding: 12px 0;
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: -24px -24px 24px -24px;
+}
+
+.cartao-item {
+    border: 2px solid var(--verde-claro);
+    padding: 14px;
+    margin-bottom: 18px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.imagem-item {
+    width: 78px;
+    height: 78px;
+    margin-right: 18px;
+    object-fit: cover;
+}
+
+.detalhes-item p {
+    font-size: .95rem;
+    color: #444;
+    margin: 4px 0;
+}
+
+.detalhes-item p:first-child {
+    font-weight: 600;
+    color: var(--verde-escuro);
+}
+
+.quantidade {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    background: var(--verde-claro);
+    color: var(--verde-escuro);
+    font-size: .85rem;
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+.caixa-valor-total {
+    text-align: center;
+    padding: 14px 28px;
+    margin-top: 30px;
+    background: linear-gradient(135deg, #3c8d7c, #1f6f5b);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grupo-metodo-pagamento p {
+    color: var(--verde-escuro);
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+.caixa-opcao {
+    border: 2px solid #ccc;
+    padding: 10px 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #444;
+    background: #fff;
+    transition: .25s;
+}
+
+.caixa-opcao.opcao-ativa {
+    border-color: var(--verde-medio);
+    background: var(--verde-claro);
+}
+
+.logo-pix,
+.logo-cartao {
+    height: 20px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.grupo-formulario {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.grupo-formulario label {
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
+    font-size: .95rem;
+    color: var(--verde-escuro);
+    font-weight: 500;
+}
+
+.grupo-formulario input {
+    flex: 2;
+    padding: 8px;
+    border: none;
+    background: #f4f7f6;
+    color: #444;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .1);
+    text-align: center;
+}
+
+.grupo-formulario-inline {
+    display: flex;
+    gap: 10px;
+}
+
+.grupo-formulario-inline .grupo-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.grupo-formulario-inline .grupo-input input {
+    flex: 1;
+}
+
+.grupo-formulario-inline .grupo-input label {
+    flex: 1;
+}
+
+.botao-finalizar-form {
+    background: linear-gradient(135deg, #d4af37, #b8922d);
+    width: 70%;
+    margin: 28px auto 0;
+    padding: 10px 20px;
+    font-size: .95rem;
+    border: none;
+    color: #3b2f2f;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .25);
+}
+
+.metodo-oculto {
+    display: none;
+}
+
+/* ==================== ENTREGA ==================== */
+#entrega-page.pagina.ativa {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Gradiente mais rico com verde profundo e dourado */
+    background: linear-gradient(rgba(7, 26, 22, 0.7), rgba(7, 26, 22, 0.7)),
+        url('https://i.pinimg.com/1200x/d4/ea/f4/d4eaf483c47a4756201bab9cfb012f22.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    display: flex;
+    padding-top: 70px;
+}
+
+.wrapper-entrega {
+    display: flex;
+    max-width: 900px;
+    width: 100%;
+    gap: 40px;
+}
+
+.caixa-entrega {
+    flex: 1.2;
+    background: linear-gradient(180deg, #f7f4ee, #ede8df);
+    padding: 32px 42px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .2);
+    border: 3px solid var(--verde-claro);
+}
+
+.titulo-entrega {
+    font-family: var(--fonte-titulo);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--verde-escuro);
+    margin-bottom: 4px;
+}
+
+.subtitulo-entrega {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 26px;
+}
+
+.grupo-formulario-entrega {
+    margin-bottom: 14px;
+}
+
+.grupo-formulario-entrega label,
+.grupo-input-entrega label {
+    display: block;
+    font-size: .75rem;
+    color: var(--verde-escuro);
+    margin-bottom: 4px;
+}
+
+.grupo-formulario-entrega input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+}
+
+.grupo-formulario-inline-entrega {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.grupo-formulario-inline-entrega .grupo-input-entrega {
+    flex: 1;
+}
+
+.grupo-formulario-inline-entrega .campo-numero {
+    flex: .4;
+}
+
+.botao-ver-pedido {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 28px;
+    border: 2px solid var(--verde-medio);
+    background: #fff;
+    color: var(--verde-escuro);
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.botao-ver-pedido:hover {
+    background: var(--verde-claro);
+}
+
+.separador {
+    text-align: center;
+    color: var(--verde-escuro);
+    margin: 10px 0;
+    font-size: .85rem;
+}
+
+.botao-voltar-menu {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    background: linear-gradient(135deg, #3c8d7c, #1f6f5b);
+    color: #fff;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.caixa-cupom {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#input-cupom {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #c4ced0;
+
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+#btn-aplicar-cupom {
+    background-color: #2d5a4c;
+    /* O verde do seu layout */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+#btn-aplicar-cupom:hover {
+    background-color: #1e3d33;
+}
+
+.botao-voltar-menu:hover {
+    opacity: .9;
+}
+
+/* ==================== FINALIZADO ==================== */
+#finalizado-page.pagina.ativa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(7, 26, 22, 0.7), rgba(7, 26, 22, 0.7)),
+        url('https://i.pinimg.com/1200x/d4/ea/f4/d4eaf483c47a4756201bab9cfb012f22.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 60px 20px;
+}
+
+.conteudo-finalizado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 640px;
+    width: 100%;
+    background: linear-gradient(180deg, #f7f4ee, #ede8df);
+    border-radius: 28px;
+    padding-bottom: 36px;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, .25);
+}
+
+.cabecalho-finalizado {
+    background: linear-gradient(135deg, #3c8d7c, #1f6f5b);
+    border-radius: 28px 28px 0 0;
+    width: 100%;
+    padding: 34px;
+    padding-bottom: 54px;
+    position: relative;
+}
+
+.cabecalho-finalizado::after {
+    content: '';
+    position: absolute;
+    bottom: -48px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(135deg, #3c8d7c, #1f6f5b);
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    z-index: -1;
+}
+
+.titulo-finalizado {
+    font-family: var(--fonte-titulo);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 18px;
+}
+
+.detalhes-finalizado {
+    color: #e6f5f1;
+    font-size: 1rem;
+    margin-top: 18px;
+}
+
+.detalhes-finalizado p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.icone-check {
+    color: var(--dourado);
+    font-size: 1.2rem;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.botao-menu-final {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 38px;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, #d4af37, #b8922d);
+    color: #3b2f2f;
+    border: none;
+    border-radius: 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .3s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .3);
+}
+
+.icone-seta {
+    font-size: 1.4rem;
+    margin-right: 8px;
+    transform: rotate(180deg);
+}
+
+/* ==================== RESPONSIVO ==================== */
+@media (max-width: 900px) {
+    .area-conteudo {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .titulo {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .wrapper-checkout,
+    .wrapper-entrega {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .grupo-formulario {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .grupo-formulario label,
+    .grupo-formulario input {
+        flex: auto;
+        width: 100%;
+        text-align: left;
+    }
+
+    .botao-finalizar-form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo {
+        font-size: 3.2rem;
+    }
+
+    .celular {
+        width: 95%;
+    }
+
+    .painel-carrinho {
+        right: 10px;
+        width: calc(100% - 20px);
+    }
+}
+
+/* ==================== ESTILO DO RODAPÉ ==================== */
+.rodape-confeitaria {
+    background-color: #195738;
+    /* Vinho mais escuro para contraste */
+    color: #fdf6f7;
+    padding: 60px 20px 20px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 50px;
+}
+
+.container-rodape {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.coluna-rodape h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #dff3c8;
+}
+
+.logo-rodape {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.coluna-rodape p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #dff3c8;
+}
+
+.lista-contato {
+    list-style: none;
+    padding: 0;
+}
+
+.lista-contato li {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+/* Estilo especial para o link do WhatsApp */
+.link-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    background-color: #7fbb95;
+    /* Verde oficial WhatsApp */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.link-whatsapp:hover {
+    transform: scale(1.05);
+    background-color: #ccb54d;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    border: 1px solid #837539;
+    padding: 5px 12px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.social-link:hover {
+    background-color: #837539;
+    color: #f2efc7;
+}
+
+.direitos-autorais {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+    color: #837539;
+}
+
+/*carrinho cupom*/
+.barra-frete-container {
+    background: #eee;
+    border-radius: 10px;
+    height: 8px;
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.barra-frete-preenchimento {
+    background: var(--dourado);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.texto-frete {
+    font-size: 0.8rem;
+    color: var(--verde-escuro);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container-rodape {
+        text-align: center;
+    }
+
+    .redes-sociais {
+        justify-content: center;
+    }
+}
+
+/* ==================== MODAIS (CUPOM E VIP) ==================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(8px);
+}
+
+.modal-conteudo {
+    background: var(--creme);
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+    max-width: 400px;
+    width: 90%;
+    border: 3px solid var(--dourado);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+    animation: popup 0.4s ease-out;
+}
+
+@keyframes popup {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Elementos do Cupom */
+.caixa-codigo {
+    background: #fff;
+    border: 2px dashed var(--verde-medio);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.palco-animacao {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid var(--dourado);
+}
+
+@keyframes balanco {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+/* A barra de progresso mágica */
+.barra-progresso-container {
+    width: 100%;
+    height: 10px;
+    background: #111;
+    border-radius: 5px;
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+.barra-progresso-preenchimento {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--dourado), #fff);
+    box-shadow: 0 0 15px var(--dourado);
+    transition: width 1s linear;
+}
+
+/* Estilo da Estrela Gatilho */
+#evangeline-trigger {
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all 0.5s ease;
+    display: inline-block;
+}
+
+#evangeline-trigger:hover {
+    text-shadow: 0 0 10px #fff, 0 0 20px #f0e68c;
+    transform: scale(1.5) rotate(20deg);
+}
+
+/* A Aba Secreta (Escondida abaixo do site) */
+.aba-secreta {
+    position: fixed;
+    bottom: -100%;
+    /* Começa escondida */
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #2a1b3d 0%, #ccc33f 100%);
+    color: #39ff14;
+    /* Verde Neon */
+    padding: 40px 20px;
+    z-index: 9999;
+    transition: bottom 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border-top: 4px solid #39ff14;
+    text-align: center;
+    box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.5);
+}
+
+.aba-secreta.ativa {
+    bottom: 0;
+}
+
+.cupom-secreto {
+    font-size: 2rem;
+    font-weight: bold;
+    border: 2px dashed #dcff14;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 15px 0;
+    letter-spacing: 5px;
+}
+
+#fechar-secreto {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* MODO MAGIA (O que acontece com o site quando a aba abre) */
+body.magic-mode {
+    filter: hue-rotate(280deg) contrast(1.2);
+    /* Muda as cores do site para tons roxos/místicos */
+    transition: all 1s ease;
+}
+
+body.magic-mode .container-rodape {
+    background: #1a1a1a;
+}
+
+.musica-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.gramofone {
+    font-size: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.disco {
+    transition: transform 0.5s ease;
+    display: inline-block;
+}
+
+/* Animação do disco girando */
+.tocando .disco {
+    animation: girar-disco 3s linear infinite;
+}
+
+@keyframes girar-disco {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.agulha {
+    position: absolute;
+    right: -5px;
+    top: 0;
+    font-size: 15px;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+}
+
+.tocando .agulha {
+    transform: rotate(20deg);
+    /* Agulha encosta no disco */
+}
+
+.legenda-musica {
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    color: #2d5a27;
+    margin-top: 5px;
+}

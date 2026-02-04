@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confeitaria da Tiana</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="loader-overlay">
+    <div class="loader-conteudo">
+      <div class="logo-loader">◇ TIANA & CO.</div>
+      <div class="barra-carregamento">
+        <div class="progresso"></div>
+      </div>
+      <p>Preparando a magia...</p>
+    </div>
+  </div>
+  <div id="player-musica-tiana" class="musica-container">
+    <div class="gramofone" id="gramofone-btn">
+      <span class="disco">💿</span>
+      <span class="agulha">📍</span>
+    </div>
+    <span class="legenda-musica">Tocar Jazz</span>
+    <audio id="audio-tiana" loop>
+      <source src="https://www.bensound.com/bensound-music/bensound-thejazzpiano.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <section id="home" class="pagina ativa">
+    <div class="container">
+      <div class="area-conteudo">
+
+        <div class="celular">
+          <div class="entranha-tela"></div>
+
+          <div class="caixa-imagem">
+            <img src="https://th.bing.com/th/id/R.bd60f8b62d28d6e0c8b89f2eec625102?rik=eZpbSz0mEOVZNg&pid=ImgRaw&r=0"
+              alt="Pratos da Tiana">
+          </div>
+
+          <div class="caixa-imagem">
+            <img src="https://i.pinimg.com/1200x/2b/56/b1/2b56b1dede7bf503904a9e7b7896b44f.jpg"
+              alt="Sobremesas da Tiana">
+          </div>
+        </div>
+
+        <div class="bloco-texto">
+          <div class="area-logo">◇ TIANA & CO.</div>
+          <div class="titulo">Restaurante<br>da Tiana</div>
+          <div class="subtitulo">Sabores de Nova Orleans</div>
+
+          <a href="#cardapio" class="botao-cardapio link-navegacao" data-destino="cardapio">
+            Ver Cardápio
+          </a>
+        </div>
+        <div id="modal-cupom" class="modal-overlay">
+          <div class="modal-conteudo">
+            <button id="fechar-modal-cupom" class="btn-fechar-modal">&times;</button>
+            <div class="modal-corpo">
+              <span class="badge-magico">✨ Presente Real</span>
+              <h2>O Sapo mandou um presente!</h2>
+              <p>Use o código abaixo na finalização do seu primeiro pedido.</p>
+              <div class="caixa-codigo">
+                <span id="codigo-texto">TIANA10</span>
+                <button id="btn-copiar-cupom">Copiar</button>
+              </div>
+              <p class="aviso-modal">*Válido apenas para hoje!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CARDÁPIO ==================== -->
+  <section id="cardapio" class="pagina">
+    <div class="wrapper-cardapio">
+
+      <div class="titulo-cardapio art-deco-title">Nosso Cardápio ✨</div>
+
+      <div class="menu-tabs">
+        <button class="tab-btn active" onclick="filtrarMenu('todos')">Todos</button>
+        <button class="tab-btn" onclick="filtrarMenu('salgado')">Salgados</button>
+        <button class="tab-btn" onclick="filtrarMenu('doce')">Doces</button>
+        <button class="tab-btn" onclick="filtrarMenu('bebida')">Bebidas</button>
+      </div>
+      <div class="busca-container">
+        <div class="busca-wrapper">
+          <span class="busca-icon">🔍</span>
+          <input type="text" id="input-busca" placeholder="Procure um sabor de Nova Orleans..." onkeyup="buscarPrato()">
+          <div class="linha-decorativa-busca"></div>
+        </div>
+      </div>
+      <div class="grade-cardapio" id="grade-itens">
+
+        <div class="cartao-cardapio" data-categoria="doce">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/bf/46/2f/bf462feb5fea0462462a1fbe578549cc.jpg">
+          <div class="info-cardapio">
+            <h3>• Beignets da Tiana</h3>
+            <p>Quadradinhos de massa frita, leves e aerados, com muito açúcar de confeiteiro. (8)un</p>
+            <span class="preco">R$36,00</span><br>
+            <button class="botao-adicionar" data-nome="Beignets da Tiana" data-preco="36.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="doce">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/e6/19/8e/e6198e96a460110cac41447a19561404.jpg">
+          <div class="info-cardapio">
+            <h3>• Torta de Pecan</h3>
+            <p>Uma sobremesa densa e caramelizada, típica do sul dos Estados Unidos.</p>
+            <span class="preco">R$60,00</span><br>
+            <button class="botao-adicionar" data-nome="Torta Pecan" data-preco="60.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="doce">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/de/c2/cb/dec2cbe8d67136e7ea5e107d1fde208d.jpg">
+          <div class="info-cardapio">
+            <h3>• Pudim de Pão</h3>
+            <p>Cremoso, cheio de especiarias como canela e molho de Bourbon. (1 fatia)</p>
+            <span class="preco">R$25,00</span><br>
+            <button class="botao-adicionar" data-nome="Pudim Bourbon" data-preco="25.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="doce">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/46/a7/c9/46a7c9898db73e43d7d7b666c11c899a.jpg">
+          <div class="info-cardapio">
+            <h3>• Torta de limão da Eudora</h3>
+            <p>Base crocante e recheio de creme de limão super aveludado. (1 fatia)</p>
+            <span class="preco">R$20,00</span><br>
+            <button class="botao-adicionar" data-nome="Torta Eudora" data-preco="20.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="bebida">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/7e/98/c0/7e98c076381aff74444686ace9bd4b85.jpg">
+          <div class="info-cardapio">
+            <h3>• Limonada da Charlotte</h3>
+            <p>Rosa vibrante, doce e refrescante, com fatias de limão siciliano.</p>
+            <span class="preco">R$12,00</span><br>
+            <button class="botao-adicionar" data-nome="Limonada" data-preco="12.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="bebida">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/dd/c1/08/ddc10828469b23f1efb2338917a2f82d.jpg">
+          <div class="info-cardapio">
+            <h3>• Chá Doce do sul</h3>
+            <p>Servido com bastante gelo e hortelã fresca. Tradição pura.</p>
+            <span class="preco">R$10,50</span><br>
+            <button class="botao-adicionar" data-nome="Chá doce" data-preco="10.50">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="bebida">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/736x/5e/18/14/5e18141cd8174ac766babab690013a61.jpg">
+          <div class="info-cardapio">
+            <h3>• Punch de frutas</h3>
+            <p>Servido com fumaça mágica que lembra as poções do Dr. Facilier.</p>
+            <span class="preco">R$11,00</span><br>
+            <button class="botao-adicionar" data-nome="Punch de frutas" data-preco="11.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="bebida">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/51/e0/21/51e021eb3d9d43319bf7a5b59abf71f7.jpg">
+          <div class="info-cardapio">
+            <h3>• Café au Lait</h3>
+            <p>Café forte com chicória, servido com leite bem quente.</p>
+            <span class="preco">R$10,00</span><br>
+            <button class="botao-adicionar" data-nome="Café au Lait" data-preco="10.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="salgado">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/26/13/e3/2613e32674d3d87706fd3a10cfd2a879.jpg">
+          <div class="info-cardapio">
+            <h3>• Gumbo de Frutos do Mar</h3>
+            <p>Ensopado denso feito com roux escuro, cebola, aipo e pimentão.</p>
+            <span class="preco">R$30,00</span><br>
+            <button class="botao-adicionar" data-nome="Gumbo" data-preco="30.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="salgado">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/736x/ca/4a/93/ca4a933b0136cbffb7b3a84cff5b281f.jpg">
+          <div class="info-cardapio">
+            <h3>• Po' Boy de Camarão</h3>
+            <p>Pão francês crocante recheado com camarões fritos bem temperados.</p>
+            <span class="preco">R$25,00</span><br>
+            <button class="botao-adicionar" data-nome="Po'boy" data-preco="25.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="salgado">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/6e/f0/1b/6ef01b5c309820b10c4aeabd9ab3c35e.jpg">
+          <div class="info-cardapio">
+            <h3>• Bolinhos de Siri</h3>
+            <p>Dourados e crocantes com tempero Cajun e um toque de limão. (10 un)</p>
+            <span class="preco">R$65,00</span><br>
+            <button class="botao-adicionar" data-nome="Bolinho de siri" data-preco="65.00">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="cartao-cardapio" data-categoria="salgado">
+          <div class="deco-corner"></div>
+          <img src="https://i.pinimg.com/1200x/1c/c3/a0/1cc3a0015642083f9fe0bcfd36e164c9.jpg">
+          <div class="info-cardapio">
+            <h3>• Arroz temperado</h3>
+            <p>Cozido com linguiça, carnes e muitos temperos verdes do pântano.</p>
+            <span class="preco">R$45,00</span><br>
+            <button class="botao-adicionar" data-nome="Arroz temperado" data-preco="45.00">Adicionar</button>
+          </div>
+        </div>
+
+      </div>
+      <button id="botao-finalizar" class="botao-finalizar">Finalizar Pedido →</button>
+
+    </div>
+  </section>
+  <!-- ==================== CARRINHO  ==================== -->
+  <div id="botao-carrinho" class="botao-carrinho">
+    <div id="indicador-carrinho" class="indicador-carrinho">0</div>
+  </div>
+
+  <div id="painel-carrinho" class="painel-carrinho">
+    <div class="cabecalho-carrinho">
+      <h4>Seu Pedido</h4>
+      <button id="botao-fechar-carrinho" class="botao-fechar-carrinho">✕</button>
+    </div>
+
+    <div id="itens-carrinho" class="itens-carrinho">
+      <p style="font-size:.85rem; text-align:center; color:#666;">Seu carrinho está vazio.</p>
+    </div>
+    <div class="grupo-formulario-entrega">
+      <label for="extra-entrega">Informação Adicional</label>
+      <input type="text" id="nome-entrega" name="nome-entrega" placeholder="Ex: limonada sem limão">
+    </div>
+    <div class="rodape-carrinho">
+      <div id="total-carrinho" class="total-carrinho">Total: R$0,00</div>
+      <button id="botao-ir-checkout" class="botao-ir-checkout">Finalizar Pedido</button>
+      <div class="rodape-carrinho">
+        <div id="caixa-desconto-carrinho"
+          style="display: none; justify-content: space-between; color: #e05b5b; font-size: 0.9rem; margin-bottom: 5px;">
+          <span>Desconto:</span>
+          <span id="valor-desconto-carrinho">- R$ 0,00</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== CHECKOUT ==================== -->
+  <section id="checkout-page" class="pagina">
+    <div class="wrapper-checkout">
+
+      <div class="resumo-pedido">
+        <div class="titulo-resumo">Resumo do Pedido</div>
+        <div class="caixa-cupom">
+          <input type="text" id="input-cupom" placeholder="Cupom de desconto">
+          <button id="btn-aplicar-cupom" type="button">Aplicar</button>
+        </div>
+        <p id="mensagem-cupom" style="display:none; font-size: 0.8rem; margin-top: 5px;"></p>
+        <div id="lista-itens-pedido">
+          <p class="placeholder-vazio">Adicione itens ao carrinho para ver o resumo.</p>
+        </div>
+
+        <div id="valor-total-final" class="caixa-valor-total">Valor total: R$0,00</div>
+      </div>
+
+      <div class="cartao-pagamento">
+        <div class="titulo-pagamento">Pagamento</div>
+
+        <div class="grupo-metodo-pagamento">
+          <p>• Selecione o método de pagamento</p>
+
+          <div class="caixa-opcao opcao-pix" data-metodo="pix">
+            Pix:
+            <img src="https://logospng.org/download/pix/logo-pix-1024.png" alt="PIX" class="logo-pix">
+          </div>
+
+          <div class="caixa-opcao opcao-cartao opcao-ativa" data-metodo="cartao">
+            Cartão:
+            <img src="https://logohistory.net/wp-content/uploads/2023/05/Mastercard-Logo-2016.png" alt="MASTERCARD"
+              class="logo-cartao">
+            <img src="https://logo-marque.com/wp-content/uploads/2020/06/Visa-Logo.png" alt="VISA" class="logo-cartao">
+          </div>
+        </div>
+
+        <div id="conteudo-metodo">
+
+          <div id="detalhes-pix" class="detalhes-pagamento metodo-oculto">
+            <p style="text-align:center;">Escaneie o QR Code abaixo ou utilize a chave PIX:</p>
+            <img src="https://i.pinimg.com/736x/49/27/bd/4927bd8ba9f3c281ba366eded4d11fd8.jpg" alt="QR Code PIX"
+              style="width:150px; display:block; margin:12px auto;">
+            <p style="text-align:center; font-size:.85rem; font-weight:600;">Chave: 00.000.000/0001-00</p>
+            <button class="botao-finalizar-form" id="botao-pix">Confirmar PIX</button>
+          </div>
+
+          <div id="detalhes-cartao" class="detalhes-pagamento">
+            <form id="form-cartao" class="form-cartao">
+
+              <div class="grupo-formulario">
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero" placeholder="1234 5678 9112 3456" required>
+              </div>
+
+              <div class="grupo-formulario">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="NOME NO CARTÃO" required>
+              </div>
+
+              <div class="grupo-formulario grupo-formulario-inline">
+                <div class="grupo-input">
+                  <label for="validade">Validade:</label>
+                  <input type="text" id="validade" name="validade" placeholder="MM/AA" pattern="\d{2}/\d{2}" required>
+                </div>
+                <div class="grupo-input">
+                  <label for="cvc">CVC:</label>
+                  <input type="text" id="cvc" name="cvc" placeholder="123" pattern="\d{3,4}" required>
+                </div>
+              </div>
+
+              <button type="submit" class="botao-finalizar-form">Finalizar Pedido</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== ENTREGA ==================== -->
+  <section id="entrega-page" class="pagina">
+    <div class="wrapper-entrega">
+      <div class="caixa-entrega">
+        <h2 class="titulo-entrega">Quase pronto!</h2>
+        <p class="subtitulo-entrega">Informe seus dados de entrega</p>
+
+        <form id="form-entrega">
+
+          <div class="grupo-formulario-entrega">
+            <label for="nome-cliente">Nome</label> <input type="text" id="nome-cliente" name="nome-cliente"
+              placeholder="Nome Completo">
+          </div>
+
+          <div class="grupo-formulario-entrega">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" placeholder="12345-678">
+          </div>
+
+          <div class="grupo-formulario-entrega">
+            <label for="rua">Rua</label>
+            <input type="text" id="rua" name="rua" placeholder="Rua, Avenida, etc.">
+          </div>
+
+          <div class="grupo-formulario-inline-entrega">
+            <div class="grupo-input-entrega">
+              <label for="bairro">Bairro</label>
+              <input type="text" id="bairro" name="bairro" placeholder="Bairro">
+            </div>
+            <div class="grupo-input-entrega campo-numero">
+              <label for="numero-casa">Nº</label>
+              <input type="text" id="numero-casa" name="numero-casa" placeholder="Nº">
+            </div>
+          </div>
+
+          <div class="grupo-formulario-entrega">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" placeholder="Apto, Bloco, Referência">
+          </div>
+
+          <button type="button" class="botao-ver-pedido">Concluir Pedido</button>
+          <p class="separador">ou</p>
+          <button type="button" class="botao-voltar-menu link-navegacao" data-destino="cardapio">Voltar para
+            Cardápio</button>
+
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================== FINALIZAÇÃO ==================== -->
+  <section id="finalizado-page" class="pagina">
+    <div class="conteudo-finalizado">
+
+      <div class="palco-animacao">
+        <div id="tiana-chef" class="tiana-preparando">🍳</div>
+
+        <div class="barra-progresso-container">
+          <div id="barra-progresso-ativa" class="barra-progresso-preenchimento"></div>
+        </div>
+
+        <h2 id="status-texto">Recebemos seu pedido!</h2>
+        <p id="substatus-texto">A Tiana já está lavando as mãos...</p>
+      </div>
+
+      <div class="detalhes-estimativa">
+        <span>Tempo estimado: <strong id="cronometro">30:00</strong></span>
+      </div>
+
+      <button class="link-navegacao" data-destino="home" style="margin-top: 30px;">Voltar ao Início</button>
+    </div>
+  </section>
+  <footer class="rodape-confeitaria">
+    <div class="container-rodape">
+
+      <div class="coluna-rodape">
+        <div class="logo-rodape">◇ TIANA & CO.</div>
+        <p>Levando o sabor de Nova Orleans direto para a sua mesa com amor e magia. ✨</p>
+      </div>
+
+      <div class="coluna-rodape">
+        <h4>Contato</h4>
+        <ul class="lista-contato">
+          <li>
+            <a href="https://wa.me/5500000000000" target="_blank" class="link-whatsapp">
+              <span class="icone">icon</span> (11) 98765-4321
+            </a>
+          </li>
+          <li>contato@confeitariatiana.com</li>
+          <li>Rua das Estrelas, 123 - Orleans</li>
+        </ul>
+      </div>
+
+      <div class="coluna-rodape">
+        <h4>Siga-nos</h4>
+        <div class="redes-sociais">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">Facebook</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="direitos-autorais">
+      &copy; 2026 Confeitaria da Tiana. Todos os direitos reservados.
+      <span id="evangeline-trigger" title="Faça um desejo...">⭐</span>
+    </div>
+
+    <div id="aba-secreta-mama" class="aba-secreta">
+      <div class="conteudo-secreto">
+        <button id="fechar-secreto">✕</button>
+        <div class="magia-icon">🧪</div>
+        <h3>Você encontrou o Caldeirão da Mama Odie!</h3>
+        <p>"Não importa o que você quer, mas o que você precisa!"</p>
+        <div class="cupom-secreto">DOCE5</div>
+        <span>5% de desconto para quem acredita em magia.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="Script.js"></script>
+</body>
+
+</html>
